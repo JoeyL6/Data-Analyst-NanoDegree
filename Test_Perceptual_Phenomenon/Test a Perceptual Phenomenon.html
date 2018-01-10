@@ -11805,18 +11805,18 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>hypothesis</strong></p>
-<p>H<sub>0</sub>(null hypothesis): the Congruent or incongruent in ink colors/color word will make no difference on time spend on naming ink colors</p>
-<p>or the mean of congruent group and incongruent group is same</p>
-<p>H<sub>a</sub>(alternative hypothesis): the Congruent or incongruent in ink colors/color word will make difference on time spend on naming ink colors</p>
-<p>or the mean of congruent group and incongruent group are not the same</p>
+<p>let μ<sub>c</sub> be the population mean of congruent group</p>
+<p>let μ<sub>l</sub> be the population mean of incongruent group</p>
+<p>H<sub>0</sub>(null hypothesis): μ<sub>c</sub> = μ<sub>l</sub>, the mean of congruent group and incongruent group is same</p>
+<p>H<sub>a</sub>(alternative hypothesis): μ<sub>c</sub> ≠ μ<sub>l</sub>, the mean of congruent group and incongruent group are not the same</p>
 <p><strong>statistical test</strong>
-I will use independent two sample t-test with 95% confidence interval
+I will use paired two sample t-test with 95% confidence interval
 I choose this test because:</p>
 
-<pre><code>1. we are comparing the difference between two groups of data
+<pre><code>1. we are comparing the means between two groups of data
 2. the poputlation variance and population means are unknown
 3. the sample size is much smaller than 30 so the normal approximation can't be used
-4. I pick one tail because we only expect to know if the mean of one set of data is smaller than the mean of another set. We are not test on the exsistence of difference.</code></pre>
+4. the paired test is used because same group of testees are being tested under two different condition</code></pre>
 
 </div>
 </div>
@@ -12341,11 +12341,12 @@ LSISGfVxi4hERsEtIhIZBbeISGQU3CIikVFwi4hE5v8ACRWNMibPqT4AAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
-<span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">equal_var</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12358,13 +12359,13 @@ LSISGfVxi4hERsEtIhIZBbeISGQU3CIikVFwi4hE5v8ACRWNMibPqT4AAAAASUVORK5CYII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+<div class="prompt output_prompt">Out[18]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Ttest_indResult(statistic=-6.5322505539032285, pvalue=6.5101673904426379e-08)</pre>
+<pre>Ttest_relResult(statistic=8.020706944109957, pvalue=4.1030005857111781e-08)</pre>
 </div>
 
 </div>
@@ -12377,8 +12378,8 @@ LSISGfVxi4hERsEtIhIZBbeISGQU3CIikVFwi4hE5v8ACRWNMibPqT4AAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The two sample independent test results are listed above. The p value is well below 0.05 which means we rejected the null hypothesis since the cinfidence level is 95%.</p>
-<p>The critical statistic value is -6.5322505539032285.</p>
+<p>The two sample independent test results are listed above. The p value is well below 0.05 which means we rejected the null hypothesis since the cinfidence level is 95%. Two group of data have different means.</p>
+<p>The critical statistic value is 8.020706944109957.</p>
 <p>The congruent and incongruent conditions do make difference on time spend on naming ink colors.</p>
 <p>This result matched my expectiations because the data visulization showing that these two sets of data have difference.</p>
 
